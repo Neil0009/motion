@@ -10,6 +10,7 @@ import ProjectFiles from '@/components/portal/ProjectFiles';
 import ProjectMessages from '@/components/portal/ProjectMessages';
 import ProjectMilestones from '@/components/portal/ProjectMilestones';
 import ProjectInvoices from '@/components/portal/ProjectInvoices';
+import AIAssistant from '@/components/portal/AIAssistant';
 
 const tabs = [
   { id: 'overview', label: 'Overview', icon: FileText },
@@ -137,6 +138,9 @@ export default function ProjectPortal() {
           {activeTab === 'messages' && <ProjectMessages projectId={project.id} user={user} />}
           {activeTab === 'invoices' && <ProjectInvoices projectId={project.id} />}
         </motion.div>
+
+        {/* AI Assistant */}
+        <AIAssistant projectId={project.id} />
       </div>
     </div>
   );
