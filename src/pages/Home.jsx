@@ -5,6 +5,7 @@ import ProductProcess from '@/components/home/ProductProcess';
 import Process from '@/components/home/Process';
 import HomePortfolio from '@/components/home/HomePortfolio';
 import Industries from '@/components/home/Industries';
+import Testimonials from '@/components/home/Testimonials';
 import Contact from '@/components/home/Contact';
 import Footer from '@/components/home/Footer';
 
@@ -17,6 +18,7 @@ export default function Home() {
       <Process />
       <HomePortfolio />
       <Industries />
+      <Testimonials />
       <Contact />
       <Footer />
     </div>
