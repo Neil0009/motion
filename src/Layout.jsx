@@ -7,6 +7,7 @@ import { createPageUrl } from './utils';
 const navItems = [
   { name: 'Services', href: '#services' },
   { name: 'Process', href: '#process' },
+  { name: 'Portfolio', href: createPageUrl('Portfolio') },
   { name: 'Industries', href: '#industries' },
   { name: 'Contact', href: '#contact' },
 ];
@@ -80,14 +81,25 @@ export default function Layout({ children }) {
             {/* Desktop nav */}
             <div className="hidden md:flex items-center gap-8">
               {navItems.map((item) => (
-                <a
-                  key={item.name}
-                  href={item.href}
-                  className="text-gray-400 hover:text-white text-sm font-medium transition-colors relative group"
-                >
-                  {item.name}
-                  <span className="absolute -bottom-1 left-0 w-0 h-0.5 bg-cyan-400 group-hover:w-full transition-all duration-300" />
-                </a>
+                item.name === 'Portfolio' ? (
+                  <Link
+                    key={item.name}
+                    to={item.href}
+                    className="text-gray-400 hover:text-white text-sm font-medium transition-colors relative group"
+                  >
+                    {item.name}
+                    <span className="absolute -bottom-1 left-0 w-0 h-0.5 bg-cyan-400 group-hover:w-full transition-all duration-300" />
+                  </Link>
+                ) : (
+                  <a
+                    key={item.name}
+                    href={item.href}
+                    className="text-gray-400 hover:text-white text-sm font-medium transition-colors relative group"
+                  >
+                    {item.name}
+                    <span className="absolute -bottom-1 left-0 w-0 h-0.5 bg-cyan-400 group-hover:w-full transition-all duration-300" />
+                  </a>
+                )
               ))}
               <motion.button
                 whileHover={{ scale: 1.02 }}
@@ -123,14 +135,25 @@ export default function Layout({ children }) {
             >
               <div className="px-6 py-6 space-y-4">
                 {navItems.map((item) => (
-                  <a
-                    key={item.name}
-                    href={item.href}
-                    onClick={() => setMobileMenuOpen(false)}
-                    className="block text-gray-400 hover:text-white text-lg font-medium py-2 transition-colors"
-                  >
-                    {item.name}
-                  </a>
+                  item.name === 'Portfolio' ? (
+                    <Link
+                      key={item.name}
+                      to={item.href}
+                      onClick={() => setMobileMenuOpen(false)}
+                      className="block text-gray-400 hover:text-white text-lg font-medium py-2 transition-colors"
+                    >
+                      {item.name}
+                    </Link>
+                  ) : (
+                    <a
+                      key={item.name}
+                      href={item.href}
+                      onClick={() => setMobileMenuOpen(false)}
+                      className="block text-gray-400 hover:text-white text-lg font-medium py-2 transition-colors"
+                    >
+                      {item.name}
+                    </a>
+                  )
                 ))}
                 <button className="w-full mt-4 px-6 py-3 rounded-full bg-gradient-to-r from-cyan-500 to-cyan-400 text-black font-semibold">
                   Get Quote

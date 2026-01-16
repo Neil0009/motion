@@ -1,6 +1,8 @@
 import React, { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { Home, Building, Store, Trees, ArrowRight } from 'lucide-react';
+import { Link } from 'react-router-dom';
+import { createPageUrl } from '@/utils';
 
 const industries = [
   {
@@ -102,7 +104,7 @@ export default function Industries() {
                     : 'bg-transparent border-transparent hover:bg-white/[0.02] hover:border-white/10'
                 }`}
               >
-                <div className="flex items-start gap-4">
+                <Link to={`${createPageUrl('Portfolio')}?category=${industry.id}`} className="flex items-start gap-4 w-full">
                   <div className={`p-3 rounded-xl ${
                     activeIndustry.id === industry.id 
                       ? colorClasses[industry.color].split(' ')[0] 
@@ -129,7 +131,7 @@ export default function Industries() {
                       ? `${colorClasses[industry.color].split(' ')[1]} translate-x-0` 
                       : 'text-gray-600 -translate-x-2 opacity-0'
                   }`} />
-                </div>
+                </Link>
               </motion.button>
             ))}
           </motion.div>
