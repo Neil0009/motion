@@ -88,7 +88,7 @@ export default function Industries() {
   const [activeIndustry, setActiveIndustry] = useState(industries[0]);
 
   return (
-    <section className="relative py-32 bg-[#0a0a0a] overflow-hidden">
+    <section id="industries" className="relative py-32 bg-[#0a0a0a] overflow-hidden">
       {/* Ambient glow */}
       <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[800px] bg-cyan-500/5 rounded-full blur-3xl" />
 
