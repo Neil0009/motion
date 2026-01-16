@@ -7,7 +7,7 @@ import { Textarea } from '@/components/ui/textarea';
 
 export default function Contact() {
   return (
-    <section className="relative py-32 bg-[#111111] overflow-hidden">
+    <section id="contact" className="relative py-32 bg-[#111111] overflow-hidden">
       {/* Background elements */}
       <div className="absolute inset-0">
         <div className="absolute top-0 right-0 w-[600px] h-[600px] bg-cyan-500/10 rounded-full blur-3xl -translate-y-1/2 translate-x-1/2" />
