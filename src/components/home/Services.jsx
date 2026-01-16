@@ -63,7 +63,7 @@ const services = [
 
 export default function Services() {
   return (
-    <section className="relative py-32 bg-[#0a0a0a] overflow-hidden">
+    <section id="services" className="relative py-32 bg-[#0a0a0a] overflow-hidden">
       {/* Background elements */}
       <div className="absolute top-0 left-0 w-full h-px bg-gradient-to-r from-transparent via-cyan-500/50 to-transparent" />
       
