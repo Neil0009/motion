@@ -87,21 +87,22 @@ export default function Services() {
         </motion.div>
 
         <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6 lg:gap-8">
-          {services.map((service, index) => (
-            <motion.div
-              key={index}
-              initial={{ opacity: 0, y: 40 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.6, delay: service.delay }}
-              className="group relative"
-            >
-              <div className="relative h-full p-8 lg:p-10 rounded-3xl bg-gradient-to-br from-white/[0.05] to-transparent border border-white/[0.08] hover:border-white/20 transition-all duration-500 overflow-hidden">
+        {services.map((service, index) => (
+          <motion.div
+            key={index}
+            initial={{ opacity: 0, y: 40 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.6, delay: service.delay }}
+            className="group relative"
+          >
+            <Link to={`${createPageUrl('ServiceDetail')}?service=${service.title.toLowerCase().replace(/\s+/g, '-').replace(/[^\w-]/g, '')}`}>
+              <div className="relative h-full p-8 lg:p-10 rounded-3xl bg-gradient-to-br from-white/[0.05] to-transparent border border-white/[0.08] hover:border-white/20 transition-all duration-500 overflow-hidden cursor-pointer">
                 {/* Hover glow */}
                 <div className={`absolute inset-0 bg-gradient-to-br ${service.gradient} opacity-0 group-hover:opacity-[0.03] transition-opacity duration-500`} />
-                
+
                 {/* Icon */}
-                <div className={`inline-flex p-4 rounded-2xl bg-gradient-to-br ${service.gradient} mb-6`}>
+                <div className={`inline-flex p-4 rounded-2xl bg-gradient-to-br ${service.gradient} mb-6 group-hover:scale-110 transition-transform duration-300`}>
                   <service.icon className="w-7 h-7 text-white" />
                 </div>
 
@@ -129,19 +130,17 @@ export default function Services() {
                 </div>
 
                 {/* CTA */}
-                <Link 
-                  to={`${createPageUrl('ServiceDetail')}?service=${service.title.toLowerCase().replace(/\s+/g, '-').replace(/[^\w-]/g, '')}`}
-                  className="flex items-center text-cyan-400 font-medium group/link cursor-pointer"
-                >
-                  <span className="group-hover/link:mr-2 transition-all">Learn More</span>
-                  <ArrowUpRight className="w-5 h-5 opacity-0 group-hover/link:opacity-100 -translate-x-2 group-hover/link:translate-x-0 transition-all" />
-                </Link>
+                <div className="flex items-center text-cyan-400 font-medium group/link">
+                  <span className="group-hover:mr-2 transition-all">Learn More</span>
+                  <ArrowUpRight className="w-5 h-5 opacity-0 group-hover:opacity-100 -translate-x-2 group-hover:translate-x-0 transition-all" />
+                </div>
 
                 {/* Corner accent */}
                 <div className={`absolute top-0 right-0 w-32 h-32 bg-gradient-to-bl ${service.gradient} opacity-10 blur-3xl`} />
               </div>
-            </motion.div>
-          ))}
+            </Link>
+          </motion.div>
+        ))}
         </div>
       </div>
     </section>

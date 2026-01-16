@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { Home, Building, Store, Trees, ArrowRight } from 'lucide-react';
+import { Home, Building, Store, Trees, Monitor, Sofa, Dumbbell, ArrowRight } from 'lucide-react';
 import { Link } from 'react-router-dom';
 import { createPageUrl } from '@/utils';
 
@@ -44,6 +44,36 @@ const industries = [
     image: 'https://images.unsplash.com/photo-1480714378408-67cf0d13bc1b?w=800&q=80',
     stats: ['Master plans', 'Public spaces', 'Landscapes'],
     color: 'emerald',
+  },
+  {
+    id: 'technology',
+    icon: Monitor,
+    title: 'Technology',
+    subtitle: 'Consumer Electronics',
+    description: 'Sleek product animations for smartphones, laptops, wearables, and tech gadgets that highlight innovation and premium design.',
+    image: 'https://images.unsplash.com/photo-1531297484001-80022131f5a1?w=800&q=80',
+    stats: ['50+ Tech Brands', '4K Resolution', 'Premium quality'],
+    color: 'cyan',
+  },
+  {
+    id: 'furniture',
+    icon: Sofa,
+    title: 'Furniture',
+    subtitle: 'Home & Office',
+    description: 'Beautiful product visualizations that showcase furniture craftsmanship, materials, and design details for e-commerce and marketing.',
+    image: 'https://images.unsplash.com/photo-1555041469-a586c61ea9bc?w=800&q=80',
+    stats: ['E-commerce ready', 'Multiple angles', 'Material focus'],
+    color: 'amber',
+  },
+  {
+    id: 'sports',
+    icon: Dumbbell,
+    title: 'Sports Equipment',
+    subtitle: 'Athletic & Outdoor Gear',
+    description: 'Dynamic product animations that capture performance, engineering, and the energy of athletic equipment and outdoor gear.',
+    image: 'https://images.unsplash.com/photo-1517836357463-d25dfeac3438?w=800&q=80',
+    stats: ['Action shots', 'Feature details', 'Performance'],
+    color: 'violet',
   },
 ];
 
