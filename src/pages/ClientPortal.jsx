@@ -5,7 +5,6 @@ import { base44 } from '@/api/base44Client';
 import { Link } from 'react-router-dom';
 import { createPageUrl } from '@/utils';
 import { FolderOpen, Clock, CheckCircle2, AlertCircle, ArrowRight, Plus } from 'lucide-react';
-import AIAssistant from '@/components/portal/AIAssistant';
 
 const statusColors = {
   pending: 'bg-amber-500/10 text-amber-400 border-amber-500/30',
@@ -164,9 +163,6 @@ export default function ClientPortal() {
             </div>
           )}
         </motion.div>
-
-        {/* AI Assistant */}
-        <AIAssistant />
       </div>
     </div>
   );

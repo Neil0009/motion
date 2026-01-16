@@ -4,6 +4,7 @@ import { motion, AnimatePresence } from 'framer-motion';
 import { Menu, X } from 'lucide-react';
 import { createPageUrl } from './utils';
 import { base44 } from '@/api/base44Client';
+import AIAssistant from '@/components/portal/AIAssistant';
 
 const navItems = [
   { name: 'Services', href: '#services' },
@@ -181,6 +182,9 @@ export default function Layout({ children }) {
 
       {/* Main content */}
       <main>{children}</main>
-    </div>
-  );
-}
+
+      {/* AI Assistant - Available on all pages */}
+      <AIAssistant />
+      </div>
+      );
+      }
