@@ -109,7 +109,21 @@ export default function Contact() {
                 <div className="space-y-2">
                   <label className="text-sm text-gray-400 font-medium">Project Type</label>
                   <div className="grid grid-cols-2 gap-3">
-                    {['3D Visualization', 'BIM Model', 'CAD Documentation', 'Walkthrough Video', 'Promo Video', 'Interior Design'].map((type) => (
+                    {[
+                      'Promo Video',
+                      'Product Feature',
+                      'Assembly Animation',
+                      'Installation Guide',
+                      'Exploded View',
+                      'Industrial Animation',
+                      '3D Visualization',
+                      'BIM Model',
+                      'CAD Documentation',
+                      'Architectural Drafting',
+                      'Drawing Redrawing',
+                      'Walkthrough Video',
+                      'Interior Design'
+                    ].map((type) => (
                       <button
                         key={type}
                         type="button"
