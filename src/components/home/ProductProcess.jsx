@@ -1,38 +1,38 @@
 import React from 'react';
 import { motion } from 'framer-motion';
-import { Lightbulb, Box, Zap, Sparkles } from 'lucide-react';
+import { Package, Pencil, Play, Upload } from 'lucide-react';
 
 const steps = [
   {
     number: '01',
-    icon: Lightbulb,
-    title: 'Concept & Storyboarding',
-    description: 'We analyze your architectural plans and develop a comprehensive visualization strategy that captures your design intent.',
-    details: ['Design review', 'Mood boards', 'View planning', 'Timeline setup'],
+    icon: Package,
+    title: 'Product Analysis & Planning',
+    description: 'We study your product specifications, CAD files, and marketing goals to develop the perfect visualization strategy.',
+    details: ['CAD file review', 'Shot planning', 'Style references', 'Timeline setup'],
     color: 'cyan',
   },
   {
     number: '02',
-    icon: Box,
+    icon: Pencil,
     title: '3D Modeling & Texturing',
-    description: 'Precise architectural modeling from your CAD/Revit files with photorealistic materials, lighting, and environmental details.',
-    details: ['BIM integration', 'Material library', 'Furniture/fixtures', 'Landscape design'],
+    description: 'Precise product modeling with accurate materials, textures, and details that showcase your product\'s quality and features.',
+    details: ['High-poly modeling', 'Material setup', 'Product variants', 'Lighting design'],
     color: 'violet',
   },
   {
     number: '03',
-    icon: Zap,
-    title: 'Animation & Motion Graphics',
-    description: 'Cinematic camera paths and animations showcase spatial flow, design features, and the experience of moving through spaces.',
-    details: ['Camera paths', 'Day/night cycles', 'People animation', 'Visual effects'],
+    icon: Play,
+    title: 'Animation & Assembly',
+    description: 'Dynamic animations including exploded views, assembly sequences, feature highlights, and cinematic product reveals.',
+    details: ['Exploded views', 'Assembly guides', 'Feature demos', 'Camera movement'],
     color: 'amber',
   },
   {
     number: '04',
-    icon: Sparkles,
-    title: 'Rendering & Post-Production',
-    description: 'High-resolution renders with professional color grading and post-processing for presentation-ready deliverables.',
-    details: ['V-Ray/Corona render', 'Color correction', 'Multiple formats', 'Final delivery'],
+    icon: Upload,
+    title: 'Rendering & Delivery',
+    description: 'High-resolution rendering with professional post-production, optimized for web, social media, and presentations.',
+    details: ['4K rendering', 'Color grading', 'Multiple formats', 'Final delivery'],
     color: 'emerald',
   },
 ];
@@ -44,9 +44,9 @@ const colorMap = {
   emerald: 'from-emerald-500 to-emerald-400 text-emerald-400 border-emerald-500/30 bg-emerald-500/10',
 };
 
-export default function Process() {
+export default function ProductProcess() {
   return (
-    <section id="process" className="relative py-32 bg-[#111111] overflow-hidden">
+    <section className="relative py-32 bg-[#0a0a0a] overflow-hidden">
       {/* Background pattern */}
       <div className="absolute inset-0 opacity-[0.02]">
         <div className="absolute inset-0" style={{
@@ -64,13 +64,13 @@ export default function Process() {
           className="text-center mb-20"
         >
           <span className="text-cyan-400 text-sm font-semibold tracking-[0.2em] uppercase mb-4 block">
-            Architectural Services
+            How We Work
           </span>
           <h2 className="text-4xl md:text-5xl lg:text-6xl font-bold text-white mb-6">
-            Architecture Visualization Process
+            Product Animation Process
           </h2>
           <p className="text-gray-400 text-lg max-w-2xl mx-auto">
-            A refined workflow for creating stunning architectural visualizations and BIM documentation.
+            From concept to delivery, our streamlined workflow brings your products to life with stunning animations.
           </p>
         </motion.div>
 
@@ -130,7 +130,7 @@ export default function Process() {
                     <motion.div
                       animate={{ x: [0, 5, 0] }}
                       transition={{ duration: 2, repeat: Infinity }}
-                      className="w-8 h-8 rounded-full bg-[#111111] border border-white/10 flex items-center justify-center"
+                      className="w-8 h-8 rounded-full bg-[#0a0a0a] border border-white/10 flex items-center justify-center"
                     >
                       <svg className="w-4 h-4 text-gray-600" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
@@ -152,14 +152,14 @@ export default function Process() {
           className="mt-20 text-center"
         >
           <p className="text-gray-400 mb-6">
-            Ready to start your project?
+            Ready to showcase your product?
           </p>
           <motion.button
             whileHover={{ scale: 1.02 }}
             whileTap={{ scale: 0.98 }}
             className="px-8 py-4 rounded-full bg-white text-black font-semibold hover:bg-gray-100 transition-colors"
           >
-            Schedule a Call
+            Get Started
           </motion.button>
         </motion.div>
       </div>
