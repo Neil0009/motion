@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom';
 import { motion, AnimatePresence } from 'framer-motion';
 import { Menu, X } from 'lucide-react';
 import { createPageUrl } from './utils';
+import { base44 } from '@/api/base44Client';
 
 const navItems = [
   { name: 'Services', href: '#services' },
@@ -10,11 +11,13 @@ const navItems = [
   { name: 'Portfolio', href: createPageUrl('Portfolio') },
   { name: 'Industries', href: '#industries' },
   { name: 'Contact', href: '#contact' },
+  { name: 'Client Portal', href: createPageUrl('ClientPortal'), requireAuth: true },
 ];
 
 export default function Layout({ children }) {
   const [scrolled, setScrolled] = useState(false);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+  const [isAuthenticated, setIsAuthenticated] = useState(false);
 
   useEffect(() => {
     const handleScroll = () => {
@@ -22,6 +25,14 @@ export default function Layout({ children }) {
     };
     window.addEventListener('scroll', handleScroll);
     return () => window.removeEventListener('scroll', handleScroll);
+  }, []);
+
+  useEffect(() => {
+    const checkAuth = async () => {
+      const authStatus = await base44.auth.isAuthenticated();
+      setIsAuthenticated(authStatus);
+    };
+    checkAuth();
   }, []);
 
   return (
@@ -80,8 +91,10 @@ export default function Layout({ children }) {
 
             {/* Desktop nav */}
             <div className="hidden md:flex items-center gap-8">
-              {navItems.map((item) => (
-                item.name === 'Portfolio' ? (
+              {navItems.map((item) => {
+                if (item.requireAuth && !isAuthenticated) return null;
+                
+                return item.name === 'Portfolio' || item.name === 'Client Portal' ? (
                   <Link
                     key={item.name}
                     to={item.href}
@@ -99,8 +112,8 @@ export default function Layout({ children }) {
                     {item.name}
                     <span className="absolute -bottom-1 left-0 w-0 h-0.5 bg-cyan-400 group-hover:w-full transition-all duration-300" />
                   </a>
-                )
-              ))}
+                );
+              })}
               <motion.button
                 whileHover={{ scale: 1.02 }}
                 whileTap={{ scale: 0.98 }}
@@ -134,8 +147,10 @@ export default function Layout({ children }) {
               className="md:hidden bg-[#0a0a0a]/95 backdrop-blur-xl border-b border-white/[0.06]"
             >
               <div className="px-6 py-6 space-y-4">
-                {navItems.map((item) => (
-                  item.name === 'Portfolio' ? (
+                {navItems.map((item) => {
+                  if (item.requireAuth && !isAuthenticated) return null;
+                  
+                  return item.name === 'Portfolio' || item.name === 'Client Portal' ? (
                     <Link
                       key={item.name}
                       to={item.href}
@@ -153,8 +168,8 @@ export default function Layout({ children }) {
                     >
                       {item.name}
                     </a>
-                  )
-                ))}
+                  );
+                })}
                 <button className="w-full mt-4 px-6 py-3 rounded-full bg-gradient-to-r from-cyan-500 to-cyan-400 text-black font-semibold">
                   Get Quote
                 </button>
