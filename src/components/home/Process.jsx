@@ -46,7 +46,7 @@ const colorMap = {
 
 export default function Process() {
   return (
-    <section className="relative py-32 bg-[#111111] overflow-hidden">
+    <section id="process" className="relative py-32 bg-[#111111] overflow-hidden">
       {/* Background pattern */}
       <div className="absolute inset-0 opacity-[0.02]">
         <div className="absolute inset-0" style={{
