@@ -210,10 +210,15 @@ export default function ProjectFiles({ projectId, user }) {
                       )}
                       <button
                         onClick={() => setPreviewFile(file)}
-                        className="p-3 rounded-xl bg-white/5 hover:bg-cyan-500/20 border border-white/10 hover:border-cyan-500/30 transition-all"
+                        className="p-3 rounded-xl bg-white/5 hover:bg-cyan-500/20 border border-white/10 hover:border-cyan-500/30 transition-all relative"
                         title="Preview"
                       >
                         <Eye className="w-5 h-5 text-gray-400 group-hover:text-cyan-400 transition-colors" />
+                        {allFiles.filter(f => f.file_id === file.id).length > 0 && (
+                          <span className="absolute -top-1 -right-1 w-4 h-4 bg-cyan-500 text-black text-xs font-bold rounded-full flex items-center justify-center">
+                            {allFiles.filter(f => f.file_id === file.id).length}
+                          </span>
+                        )}
                       </button>
                       <a
                         href={file.file_url}
@@ -297,7 +302,7 @@ export default function ProjectFiles({ projectId, user }) {
       {/* File Preview Modal */}
       <AnimatePresence>
         {previewFile && (
-          <FilePreview file={previewFile} onClose={() => setPreviewFile(null)} />
+          <FilePreview file={previewFile} user={user} onClose={() => setPreviewFile(null)} />
         )}
       </AnimatePresence>
     </div>

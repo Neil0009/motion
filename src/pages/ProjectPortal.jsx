@@ -135,6 +135,8 @@ export default function ProjectPortal() {
           {activeTab === 'milestones' && <ProjectMilestones projectId={project.id} user={user} />}
           {activeTab === 'files' && <ProjectFiles projectId={project.id} user={user} />}
           {activeTab === 'messages' && <ProjectMessages projectId={project.id} user={user} />}
+          {activeTab === 'calendar' && <ProjectCalendar projectId={project.id} user={user} />}
+          {activeTab === 'tasks' && <ProjectTasks projectId={project.id} user={user} />}
           {activeTab === 'invoices' && <ProjectInvoices projectId={project.id} />}
         </motion.div>
       </div>

@@ -2,8 +2,9 @@ import React from 'react';
 import { motion } from 'framer-motion';
 import { X, Download, ExternalLink } from 'lucide-react';
 import { Button } from '@/components/ui/button';
+import FileComments from './FileComments';
 
-export default function FilePreview({ file, onClose }) {
+export default function FilePreview({ file, user, onClose }) {
   const isImage = file.file_type?.startsWith('image/');
   const isPDF = file.file_type === 'application/pdf';
   const isVideo = file.file_type?.startsWith('video/');
@@ -55,42 +56,49 @@ export default function FilePreview({ file, onClose }) {
         </div>
 
         {/* Content */}
-        <div className="p-6 max-h-[70vh] overflow-auto">
-          {isImage && (
-            <img
-              src={file.file_url}
-              alt={file.file_name}
-              className="w-full h-auto rounded-xl"
-            />
-          )}
+        <div className="p-6 max-h-[70vh] overflow-auto grid lg:grid-cols-3 gap-6">
+          <div className="lg:col-span-2">
+            {isImage && (
+              <img
+                src={file.file_url}
+                alt={file.file_name}
+                className="w-full h-auto rounded-xl"
+              />
+            )}
 
-          {isPDF && (
-            <iframe
-              src={file.file_url}
-              className="w-full h-[60vh] rounded-xl bg-white"
-              title={file.file_name}
-            />
-          )}
+            {isPDF && (
+              <iframe
+                src={file.file_url}
+                className="w-full h-[60vh] rounded-xl bg-white"
+                title={file.file_name}
+              />
+            )}
 
-          {isVideo && (
-            <video
-              src={file.file_url}
-              controls
-              className="w-full h-auto rounded-xl"
-            />
-          )}
+            {isVideo && (
+              <video
+                src={file.file_url}
+                controls
+                className="w-full h-auto rounded-xl"
+              />
+            )}
 
-          {!isImage && !isPDF && !isVideo && (
-            <div className="text-center py-20">
-              <p className="text-gray-400 mb-4">Preview not available for this file type</p>
-              <Button
-                onClick={() => window.open(file.file_url, '_blank')}
-                className="bg-cyan-500 hover:bg-cyan-600 text-black"
-              >
-                Open File
-              </Button>
-            </div>
-          )}
+            {!isImage && !isPDF && !isVideo && (
+              <div className="text-center py-20">
+                <p className="text-gray-400 mb-4">Preview not available for this file type</p>
+                <Button
+                  onClick={() => window.open(file.file_url, '_blank')}
+                  className="bg-cyan-500 hover:bg-cyan-600 text-black"
+                >
+                  Open File
+                </Button>
+              </div>
+            )}
+          </div>
+
+          {/* Comments sidebar */}
+          <div className="lg:col-span-1">
+            <FileComments file={file} user={user} />
+          </div>
         </div>
       </motion.div>
     </motion.div>
