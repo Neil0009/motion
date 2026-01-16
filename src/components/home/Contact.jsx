@@ -27,13 +27,13 @@ export default function Contact() {
               Let's Create
             </span>
             <h2 className="text-4xl md:text-5xl lg:text-6xl font-bold text-white mb-6 leading-tight">
-              Ready to Elevate
+              Ready to Visualize
               <span className="block bg-gradient-to-r from-cyan-400 to-amber-400 bg-clip-text text-transparent">
-                Your Product?
+                Your Project?
               </span>
             </h2>
             <p className="text-gray-400 text-lg mb-10 max-w-lg">
-              Tell us about your project and let's create something extraordinary together. We typically respond within 24 hours.
+              Tell us about your architectural project and let's create stunning visualizations together. We typically respond within 24 hours.
             </p>
 
             {/* Quick stats */}
@@ -109,7 +109,7 @@ export default function Contact() {
                 <div className="space-y-2">
                   <label className="text-sm text-gray-400 font-medium">Project Type</label>
                   <div className="grid grid-cols-2 gap-3">
-                    {['Promo Video', 'Feature Video', 'Installation Guide', '360° Rotation'].map((type) => (
+                    {['3D Visualization', 'BIM Model', 'CAD Documentation', 'Walkthrough Video', 'Promo Video', 'Interior Design'].map((type) => (
                       <button
                         key={type}
                         type="button"
@@ -124,7 +124,7 @@ export default function Contact() {
                 <div className="space-y-2">
                   <label className="text-sm text-gray-400 font-medium">Project Details</label>
                   <Textarea
-                    placeholder="Tell us about your product and what you're looking to create..."
+                    placeholder="Tell us about your architectural project, site location, and visualization needs..."
                     rows={4}
                     className="bg-white/5 border-white/10 text-white placeholder:text-gray-600 focus:border-cyan-500/50 rounded-xl resize-none"
                   />

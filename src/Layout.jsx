@@ -70,10 +70,10 @@ export default function Layout({ children }) {
             {/* Logo */}
             <Link to={createPageUrl('Home')} className="flex items-center gap-3">
               <div className="w-10 h-10 rounded-xl bg-gradient-to-br from-cyan-500 to-cyan-400 flex items-center justify-center">
-                <span className="text-black font-bold text-lg">M</span>
+                <span className="text-black font-bold text-lg">SN</span>
               </div>
               <span className="text-xl font-bold text-white">
-                Motion<span className="text-cyan-400">3D</span>
+                studio<span className="text-cyan-400">nakxal</span>
               </span>
             </Link>
 

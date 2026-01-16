@@ -1,14 +1,14 @@
 import React from 'react';
 import { motion } from 'framer-motion';
-import { Play, Cpu, BookOpen, RotateCw, ArrowUpRight } from 'lucide-react';
+import { Play, Cpu, BookOpen, Building2, Layers, FileText, ArrowUpRight } from 'lucide-react';
 
 const services = [
   {
     icon: Play,
     title: 'Promo Videos',
-    subtitle: 'Social Ads',
-    description: 'Captivating short-form content optimized for social media platforms. Designed to stop the scroll and drive engagement.',
-    features: ['15-60 second formats', 'Platform optimized', 'High conversion focus'],
+    subtitle: 'Marketing Content',
+    description: 'Captivating architectural walkthroughs and flyovers optimized for presentations and social media. Perfect for project showcasing.',
+    features: ['Cinematic quality', 'Drone perspectives', 'Client presentations'],
     gradient: 'from-cyan-500 to-blue-600',
     delay: 0,
   },
@@ -16,28 +16,46 @@ const services = [
     icon: Cpu,
     title: 'Feature Videos',
     subtitle: 'Technical Details',
-    description: 'In-depth product explorations that highlight technical specifications, materials, and innovative features.',
-    features: ['Detailed breakdowns', 'X-ray visuals', 'Technical accuracy'],
+    description: 'Detailed architectural animations highlighting design elements, materials, lighting, and spatial relationships.',
+    features: ['Material showcase', 'Lighting studies', 'Design details'],
     gradient: 'from-violet-500 to-purple-600',
     delay: 0.1,
   },
   {
     icon: BookOpen,
     title: 'Installation Guides',
-    subtitle: 'Setup Instructions',
-    description: 'Clear, step-by-step animated tutorials that simplify complex assembly and installation processes.',
-    features: ['Step-by-step flow', 'Multi-language ready', 'User-friendly'],
+    subtitle: 'Construction Guides',
+    description: 'Clear construction sequence animations and assembly guides that simplify complex building processes for contractors.',
+    features: ['Step-by-step flow', 'Construction phases', 'Contractor-ready'],
     gradient: 'from-amber-500 to-orange-600',
     delay: 0.2,
   },
   {
-    icon: RotateCw,
-    title: '360° Rotation',
-    subtitle: 'E-commerce',
-    description: 'Interactive product spins that let customers explore every angle, boosting confidence and reducing returns.',
-    features: ['Full rotation', 'Zoom capability', 'Web optimized'],
+    icon: Building2,
+    title: 'Architectural 3D Visualization',
+    subtitle: 'Photorealistic Renders',
+    description: 'Stunning photorealistic renders and immersive visualizations that showcase your architectural designs with breathtaking detail.',
+    features: ['Photorealistic', 'Interior/Exterior', 'Multiple angles'],
     gradient: 'from-emerald-500 to-green-600',
     delay: 0.3,
+  },
+  {
+    icon: Layers,
+    title: 'Revit BIM Model',
+    subtitle: 'Building Information Modeling',
+    description: 'Comprehensive BIM models with accurate data, clash detection, and full coordination for seamless project execution.',
+    features: ['LOD 300-500', 'Clash detection', 'MEP coordination'],
+    gradient: 'from-rose-500 to-pink-600',
+    delay: 0.4,
+  },
+  {
+    icon: FileText,
+    title: 'CAD Permitable Documentation',
+    subtitle: 'Construction Documents',
+    description: 'Code-compliant construction documents and permit-ready drawings that meet all municipal and regulatory requirements.',
+    features: ['Code compliant', 'Permit ready', 'As-built drawings'],
+    gradient: 'from-indigo-500 to-blue-600',
+    delay: 0.5,
   },
 ];
 
@@ -66,7 +84,7 @@ export default function Services() {
           </p>
         </motion.div>
 
-        <div className="grid md:grid-cols-2 gap-6 lg:gap-8">
+        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6 lg:gap-8">
           {services.map((service, index) => (
             <motion.div
               key={index}

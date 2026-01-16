@@ -49,19 +49,19 @@ export default function Hero() {
               className="inline-flex items-center gap-2 px-4 py-2 rounded-full border border-cyan-500/30 bg-cyan-500/5 mb-8"
             >
               <span className="w-2 h-2 rounded-full bg-cyan-400 animate-pulse" />
-              <span className="text-cyan-400 text-sm font-medium tracking-wide">Premium 3D Animation Studio</span>
+              <span className="text-cyan-400 text-sm font-medium tracking-wide">Premium Architectural Design Studio</span>
             </motion.div>
 
             <h1 className="text-5xl md:text-6xl lg:text-7xl font-bold text-white leading-[1.1] tracking-tight mb-6">
-              <span className="block">Bring Your</span>
+              <span className="block">Transform Your</span>
               <span className="block bg-gradient-to-r from-cyan-400 via-cyan-300 to-amber-400 bg-clip-text text-transparent">
-                Products
+                Vision
               </span>
-              <span className="block">To Life</span>
+              <span className="block">Into Reality</span>
             </h1>
 
             <p className="text-lg md:text-xl text-gray-400 max-w-xl mb-10 leading-relaxed">
-              Cinematic 3D animations and motion design that transform ordinary products into extraordinary visual experiences.
+              Cutting-edge 3D visualization, BIM modeling, and architectural documentation that brings your designs to life with precision and beauty.
             </p>
 
             <div className="flex flex-col sm:flex-row gap-4">
