@@ -5,6 +5,7 @@ import { Menu, X } from 'lucide-react';
 import { createPageUrl } from './utils';
 import { base44 } from '@/api/base44Client';
 import AIAssistant from '@/components/portal/AIAssistant';
+import NotificationCenter from '@/components/NotificationCenter';
 
 const navItems = [
   { name: 'Services', href: '#services' },
@@ -19,6 +20,7 @@ export default function Layout({ children }) {
   const [scrolled, setScrolled] = useState(false);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [isAuthenticated, setIsAuthenticated] = useState(false);
+  const [user, setUser] = useState(null);
 
   useEffect(() => {
     const handleScroll = () => {
@@ -32,6 +34,14 @@ export default function Layout({ children }) {
     const checkAuth = async () => {
       const authStatus = await base44.auth.isAuthenticated();
       setIsAuthenticated(authStatus);
+      if (authStatus) {
+        try {
+          const currentUser = await base44.auth.me();
+          setUser(currentUser);
+        } catch (error) {
+          console.error('Failed to fetch user:', error);
+        }
+      }
     };
     checkAuth();
   }, []);
@@ -115,6 +125,7 @@ export default function Layout({ children }) {
                   </a>
                 );
               })}
+              {isAuthenticated && user && <NotificationCenter user={user} />}
               <motion.button
                 whileHover={{ scale: 1.02 }}
                 whileTap={{ scale: 0.98 }}
