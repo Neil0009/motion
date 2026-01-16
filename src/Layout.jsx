@@ -11,6 +11,7 @@ const navItems = [
   { name: 'Services', href: '#services' },
   { name: 'Process', href: '#process' },
   { name: 'Portfolio', href: createPageUrl('Portfolio') },
+  { name: 'Blog', href: createPageUrl('Blog') },
   { name: 'Industries', href: '#industries' },
   { name: 'Contact', href: '#contact' },
   { name: 'Client Portal', href: createPageUrl('ClientPortal'), requireAuth: true },
@@ -104,8 +105,8 @@ export default function Layout({ children }) {
             <div className="hidden md:flex items-center gap-8">
               {navItems.map((item) => {
                 if (item.requireAuth && !isAuthenticated) return null;
-                
-                return item.name === 'Portfolio' || item.name === 'Client Portal' ? (
+
+                return item.name === 'Portfolio' || item.name === 'Client Portal' || item.name === 'Blog' ? (
                   <Link
                     key={item.name}
                     to={item.href}
@@ -162,8 +163,8 @@ export default function Layout({ children }) {
               <div className="px-6 py-6 space-y-4">
                 {navItems.map((item) => {
                   if (item.requireAuth && !isAuthenticated) return null;
-                  
-                  return item.name === 'Portfolio' || item.name === 'Client Portal' ? (
+
+                  return item.name === 'Portfolio' || item.name === 'Client Portal' || item.name === 'Blog' ? (
                     <Link
                       key={item.name}
                       to={item.href}

@@ -6,6 +6,9 @@ import ProjectPortal from './pages/ProjectPortal';
 import ServiceDetail from './pages/ServiceDetail';
 import ProductAnimationService from './pages/ProductAnimationService';
 import ArchitecturalService from './pages/ArchitecturalService';
+import Blog from './pages/Blog';
+import BlogPost from './pages/BlogPost';
+import BlogEditor from './pages/BlogEditor';
 import __Layout from './Layout.jsx';
 
 
@@ -18,6 +21,9 @@ export const PAGES = {
     "ServiceDetail": ServiceDetail,
     "ProductAnimationService": ProductAnimationService,
     "ArchitecturalService": ArchitecturalService,
+    "Blog": Blog,
+    "BlogPost": BlogPost,
+    "BlogEditor": BlogEditor,
 }
 
 export const pagesConfig = {
