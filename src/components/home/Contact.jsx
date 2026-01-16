@@ -1,6 +1,6 @@
 import React from 'react';
 import { motion } from 'framer-motion';
-import { Mail, ArrowRight, Linkedin, Twitter, Instagram } from 'lucide-react';
+import { Mail, ArrowRight, Linkedin, Twitter, Instagram, Phone } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Textarea } from '@/components/ui/textarea';
@@ -35,6 +35,37 @@ export default function Contact() {
             <p className="text-gray-400 text-lg mb-10 max-w-lg">
               Tell us about your architectural project and let's create stunning visualizations together. We typically respond within 24 hours.
             </p>
+
+            {/* Contact Info */}
+            <div className="space-y-4 mb-10">
+              <a 
+                href="mailto:studionakxal@gmail.com"
+                className="flex items-center gap-3 p-4 rounded-xl bg-white/[0.02] border border-white/[0.06] hover:bg-white/[0.05] hover:border-cyan-500/30 transition-all group"
+              >
+                <div className="w-10 h-10 rounded-full bg-cyan-500/10 flex items-center justify-center group-hover:bg-cyan-500/20 transition-colors">
+                  <Mail className="w-5 h-5 text-cyan-400" />
+                </div>
+                <div>
+                  <div className="text-xs text-gray-500 uppercase tracking-wider">Email</div>
+                  <div className="text-white font-medium">studionakxal@gmail.com</div>
+                </div>
+              </a>
+              
+              <a 
+                href="https://wa.me/8801936565744"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="flex items-center gap-3 p-4 rounded-xl bg-white/[0.02] border border-white/[0.06] hover:bg-white/[0.05] hover:border-cyan-500/30 transition-all group"
+              >
+                <div className="w-10 h-10 rounded-full bg-cyan-500/10 flex items-center justify-center group-hover:bg-cyan-500/20 transition-colors">
+                  <Phone className="w-5 h-5 text-cyan-400" />
+                </div>
+                <div>
+                  <div className="text-xs text-gray-500 uppercase tracking-wider">WhatsApp</div>
+                  <div className="text-white font-medium">+880 1936 565744</div>
+                </div>
+              </a>
+            </div>
 
             {/* Quick stats */}
             <div className="grid grid-cols-3 gap-6 mb-10">
