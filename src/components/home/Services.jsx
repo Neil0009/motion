@@ -1,6 +1,8 @@
 import React from 'react';
 import { motion } from 'framer-motion';
 import { Play, Cpu, BookOpen, Building2, Layers, FileText, ArrowUpRight } from 'lucide-react';
+import { Link } from 'react-router-dom';
+import { createPageUrl } from '@/utils';
 
 const services = [
   {
@@ -127,10 +129,13 @@ export default function Services() {
                 </div>
 
                 {/* CTA */}
-                <div className="flex items-center text-cyan-400 font-medium group/link cursor-pointer">
+                <Link 
+                  to={`${createPageUrl('ServiceDetail')}?service=${service.title.toLowerCase().replace(/\s+/g, '-').replace(/[^\w-]/g, '')}`}
+                  className="flex items-center text-cyan-400 font-medium group/link cursor-pointer"
+                >
                   <span className="group-hover/link:mr-2 transition-all">Learn More</span>
                   <ArrowUpRight className="w-5 h-5 opacity-0 group-hover/link:opacity-100 -translate-x-2 group-hover/link:translate-x-0 transition-all" />
-                </div>
+                </Link>
 
                 {/* Corner accent */}
                 <div className={`absolute top-0 right-0 w-32 h-32 bg-gradient-to-bl ${service.gradient} opacity-10 blur-3xl`} />
