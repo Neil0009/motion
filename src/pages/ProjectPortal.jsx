@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { motion } from 'framer-motion';
 import { useQuery, useMutation, useQueryClient } from '@tanstack/react-query';
 import { base44 } from '@/api/base44Client';
-import { ArrowLeft, FileText, MessageSquare, CheckCircle, Receipt, Upload } from 'lucide-react';
+import { ArrowLeft, FileText, MessageSquare, CheckCircle, Receipt, Upload, Calendar, CheckSquare } from 'lucide-react';
 import { Link } from 'react-router-dom';
 import { createPageUrl } from '@/utils';
 import ProjectOverview from '@/components/portal/ProjectOverview';
@@ -10,12 +10,16 @@ import ProjectFiles from '@/components/portal/ProjectFiles';
 import ProjectMessages from '@/components/portal/ProjectMessages';
 import ProjectMilestones from '@/components/portal/ProjectMilestones';
 import ProjectInvoices from '@/components/portal/ProjectInvoices';
+import ProjectCalendar from '@/components/portal/ProjectCalendar';
+import ProjectTasks from '@/components/portal/ProjectTasks';
 
 const tabs = [
   { id: 'overview', label: 'Overview', icon: FileText },
   { id: 'milestones', label: 'Milestones', icon: CheckCircle },
   { id: 'files', label: 'Files', icon: Upload },
   { id: 'messages', label: 'Messages', icon: MessageSquare },
+  { id: 'calendar', label: 'Calendar', icon: Calendar },
+  { id: 'tasks', label: 'Tasks', icon: CheckSquare },
   { id: 'invoices', label: 'Invoices', icon: Receipt },
 ];
 
