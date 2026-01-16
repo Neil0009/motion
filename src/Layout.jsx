@@ -126,13 +126,14 @@ export default function Layout({ children }) {
                 );
               })}
               {isAuthenticated && user && <NotificationCenter user={user} />}
-              <motion.button
+              <motion.a
+                href="#contact"
                 whileHover={{ scale: 1.02 }}
                 whileTap={{ scale: 0.98 }}
                 className="px-6 py-2.5 rounded-full bg-gradient-to-r from-cyan-500 to-cyan-400 text-black font-semibold text-sm hover:from-cyan-400 hover:to-cyan-300 transition-all"
               >
                 Get Quote
-              </motion.button>
+              </motion.a>
             </div>
 
             {/* Mobile menu button */}
@@ -182,9 +183,9 @@ export default function Layout({ children }) {
                     </a>
                   );
                 })}
-                <button className="w-full mt-4 px-6 py-3 rounded-full bg-gradient-to-r from-cyan-500 to-cyan-400 text-black font-semibold">
+                <a href="#contact" onClick={() => setMobileMenuOpen(false)} className="block w-full mt-4 px-6 py-3 rounded-full bg-gradient-to-r from-cyan-500 to-cyan-400 text-black font-semibold text-center">
                   Get Quote
-                </button>
+                </a>
               </div>
             </motion.div>
           )}
