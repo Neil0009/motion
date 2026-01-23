@@ -2,11 +2,9 @@ import React, { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { useQuery } from '@tanstack/react-query';
 import { base44 } from '@/api/base44Client';
-import { FileText, Download, Image, Video, File, Calendar, User, Folder, Eye, History, ChevronRight, GitCompare } from 'lucide-react';
+import { FileText, Download, Image, Video, File, Calendar, User, Folder, Eye, ChevronRight } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import FilePreview from './FilePreview';
-import FileVersionHistory from './FileVersionHistory';
-import VersionComparison from './VersionComparison';
 
 const fileIcons = {
   'image/': Image,
@@ -26,17 +24,11 @@ export default function ProjectFiles({ projectId, user }) {
   const [selectedCategory, setSelectedCategory] = useState('all');
   const [selectedFolder, setSelectedFolder] = useState(null);
   const [previewFile, setPreviewFile] = useState(null);
-  const [showVersions, setShowVersions] = useState({});
-  const [versionHistoryFile, setVersionHistoryFile] = useState(null);
-  const [compareVersions, setCompareVersions] = useState(null);
 
-  const { data: allFiles = [], isLoading } = useQuery({
+  const { data: files = [], isLoading } = useQuery({
     queryKey: ['project-files', projectId],
     queryFn: () => base44.entities.ProjectFile.filter({ project_id: projectId }, '-created_date'),
   });
-
-  // Get only latest versions for main view
-  const files = allFiles.filter(f => f.is_latest !== false);
 
   // Group files by folder
   const folders = [...new Set(files.map(f => f.folder).filter(Boolean))];
@@ -60,16 +52,6 @@ export default function ProjectFiles({ projectId, user }) {
     const sizes = ['B', 'KB', 'MB', 'GB'];
     const i = Math.floor(Math.log(bytes) / Math.log(k));
     return Math.round(bytes / Math.pow(k, i) * 100) / 100 + ' ' + sizes[i];
-  };
-
-  const getFileVersions = (fileId) => {
-    return allFiles.filter(f => 
-      (f.id === fileId || f.parent_file_id === fileId || f.parent_file_id === allFiles.find(af => af.id === fileId)?.parent_file_id)
-    ).sort((a, b) => (b.version || 1) - (a.version || 1));
-  };
-
-  const toggleVersions = (fileId) => {
-    setShowVersions(prev => ({ ...prev, [fileId]: !prev[fileId] }));
   };
 
   if (isLoading) {
@@ -144,171 +126,82 @@ export default function ProjectFiles({ projectId, user }) {
         <div className="space-y-4">
           {filteredFiles.map((file, index) => {
             const FileIcon = getFileIcon(file.file_type);
-            const versions = getFileVersions(file.id);
-            const hasVersions = versions.length > 1;
             
             return (
-              <div key={file.id}>
-                <motion.div
-                  initial={{ opacity: 0, y: 20 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  transition={{ delay: index * 0.05 }}
-                  className="p-6 rounded-2xl bg-white/[0.02] border border-white/[0.06] hover:border-white/20 transition-all group"
-                >
-                  <div className="flex items-center gap-4">
-                    <div className="p-3 rounded-xl bg-cyan-500/10">
-                      <FileIcon className="w-8 h-8 text-cyan-400" />
+              <motion.div
+                key={file.id}
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ delay: index * 0.05 }}
+                className="p-6 rounded-2xl bg-white/[0.02] border border-white/[0.06] hover:border-white/20 transition-all group"
+              >
+                <div className="flex items-center gap-4">
+                  <div className="p-3 rounded-xl bg-cyan-500/10">
+                    <FileIcon className="w-8 h-8 text-cyan-400" />
+                  </div>
+
+                  <div className="flex-1 min-w-0">
+                    <div className="flex items-start justify-between gap-4 mb-2">
+                      <div className="flex-1">
+                        <h4 className="text-lg font-semibold text-white truncate">
+                          {file.file_name}
+                        </h4>
+                        {file.folder && (
+                          <div className="flex items-center gap-1 text-xs text-gray-500 mt-1">
+                            <Folder className="w-3 h-3" />
+                            {file.folder}
+                          </div>
+                        )}
+                      </div>
+                      <span className={`px-3 py-1 rounded-full text-xs font-medium border whitespace-nowrap ${categoryColors[file.category]}`}>
+                        {file.category}
+                      </span>
                     </div>
 
-                    <div className="flex-1 min-w-0">
-                      <div className="flex items-start justify-between gap-4 mb-2">
-                        <div className="flex-1">
-                          <h4 className="text-lg font-semibold text-white truncate">
-                            {file.file_name}
-                          </h4>
-                          {file.folder && (
-                            <div className="flex items-center gap-1 text-xs text-gray-500 mt-1">
-                              <Folder className="w-3 h-3" />
-                              {file.folder}
-                            </div>
-                          )}
+                    {file.description && (
+                      <p className="text-gray-400 text-sm mb-3">{file.description}</p>
+                    )}
+
+                    <div className="flex items-center gap-6 text-sm text-gray-500">
+                      <span>{formatFileSize(file.file_size)}</span>
+                      {file.version && file.version > 1 && (
+                        <span className="text-violet-400">v{file.version}</span>
+                      )}
+                      {file.created_date && (
+                        <div className="flex items-center gap-1">
+                          <Calendar className="w-3 h-3" />
+                          {new Date(file.created_date).toLocaleDateString()}
                         </div>
-                        <span className={`px-3 py-1 rounded-full text-xs font-medium border whitespace-nowrap ${categoryColors[file.category]}`}>
-                          {file.category}
-                        </span>
-                      </div>
-
-                      {file.description && (
-                        <p className="text-gray-400 text-sm mb-3">{file.description}</p>
                       )}
-
-                      <div className="flex items-center gap-6 text-sm text-gray-500">
-                        <span>{formatFileSize(file.file_size)}</span>
-                        {file.version && file.version > 1 && (
-                          <span className="text-violet-400">v{file.version}</span>
-                        )}
-                        {file.created_date && (
-                          <div className="flex items-center gap-1">
-                            <Calendar className="w-3 h-3" />
-                            {new Date(file.created_date).toLocaleDateString()}
-                          </div>
-                        )}
-                        {file.uploaded_by && (
-                          <div className="flex items-center gap-1">
-                            <User className="w-3 h-3" />
-                            {file.uploaded_by.split('@')[0]}
-                          </div>
-                        )}
-                      </div>
-                    </div>
-
-                    <div className="flex items-center gap-2">
-                      {hasVersions && (
-                        <>
-                          <button
-                            onClick={() => setVersionHistoryFile(file)}
-                            className="p-3 rounded-xl bg-white/5 hover:bg-violet-500/20 border border-white/10 hover:border-violet-500/30 transition-all group/history"
-                            title="View full version history"
-                          >
-                            <History className="w-5 h-5 text-gray-400 group-hover/history:text-violet-400 transition-colors" />
-                          </button>
-                          {versions.length >= 2 && (
-                            <button
-                              onClick={() => setCompareVersions({ version1: versions[1], version2: versions[0] })}
-                              className="p-3 rounded-xl bg-white/5 hover:bg-violet-500/20 border border-white/10 hover:border-violet-500/30 transition-all group/compare"
-                              title="Compare latest versions"
-                            >
-                              <GitCompare className="w-5 h-5 text-gray-400 group-hover/compare:text-violet-400 transition-colors" />
-                            </button>
-                          )}
-                        </>
+                      {file.uploaded_by && (
+                        <div className="flex items-center gap-1">
+                          <User className="w-3 h-3" />
+                          {file.uploaded_by.split('@')[0]}
+                        </div>
                       )}
-                      <button
-                        onClick={() => setPreviewFile(file)}
-                        className="p-3 rounded-xl bg-white/5 hover:bg-cyan-500/20 border border-white/10 hover:border-cyan-500/30 transition-all relative"
-                        title="Preview"
-                      >
-                        <Eye className="w-5 h-5 text-gray-400 group-hover:text-cyan-400 transition-colors" />
-                        {allFiles.filter(f => f.file_id === file.id).length > 0 && (
-                          <span className="absolute -top-1 -right-1 w-4 h-4 bg-cyan-500 text-black text-xs font-bold rounded-full flex items-center justify-center">
-                            {allFiles.filter(f => f.file_id === file.id).length}
-                          </span>
-                        )}
-                      </button>
-                      <a
-                        href={file.file_url}
-                        download
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        className="p-3 rounded-xl bg-white/5 hover:bg-cyan-500/20 border border-white/10 hover:border-cyan-500/30 transition-all"
-                      >
-                        <Download className="w-5 h-5 text-gray-400 group-hover:text-cyan-400 transition-colors" />
-                      </a>
                     </div>
                   </div>
-                </motion.div>
 
-                {/* Version History */}
-                <AnimatePresence>
-                  {showVersions[file.id] && versions.length > 1 && (
-                    <motion.div
-                      initial={{ height: 0, opacity: 0 }}
-                      animate={{ height: 'auto', opacity: 1 }}
-                      exit={{ height: 0, opacity: 0 }}
-                      className="ml-20 mt-2 space-y-2 overflow-hidden"
+                  <div className="flex items-center gap-2">
+                    <button
+                      onClick={() => setPreviewFile(file)}
+                      className="p-3 rounded-xl bg-white/5 hover:bg-cyan-500/20 border border-white/10 hover:border-cyan-500/30 transition-all"
+                      title="Preview"
                     >
-                      <p className="text-sm text-gray-500 mb-2 flex items-center gap-2">
-                        <History className="w-4 h-4" />
-                        Version History ({versions.length} versions)
-                      </p>
-                      {versions.map((version) => (
-                        <motion.div
-                          key={version.id}
-                          initial={{ x: -20, opacity: 0 }}
-                          animate={{ x: 0, opacity: 1 }}
-                          className="p-4 rounded-xl bg-white/[0.01] border border-white/[0.04] hover:border-white/10 transition-all"
-                        >
-                          <div className="flex items-center justify-between">
-                            <div className="flex-1">
-                              <div className="flex items-center gap-3 mb-1">
-                                <span className="text-sm font-medium text-white">
-                                  Version {version.version || 1}
-                                </span>
-                                {version.is_latest && (
-                                  <span className="px-2 py-0.5 rounded-full bg-emerald-500/20 text-emerald-400 text-xs">
-                                    Latest
-                                  </span>
-                                )}
-                              </div>
-                              <div className="flex items-center gap-4 text-xs text-gray-500">
-                                <span>{formatFileSize(version.file_size)}</span>
-                                {version.created_date && (
-                                  <span>{new Date(version.created_date).toLocaleString()}</span>
-                                )}
-                              </div>
-                            </div>
-                            <div className="flex items-center gap-2">
-                              <button
-                                onClick={() => setPreviewFile(version)}
-                                className="p-2 rounded-lg bg-white/5 hover:bg-cyan-500/20 border border-white/10 transition-all"
-                              >
-                                <Eye className="w-4 h-4 text-gray-400" />
-                              </button>
-                              <a
-                                href={version.file_url}
-                                download
-                                className="p-2 rounded-lg bg-white/5 hover:bg-cyan-500/20 border border-white/10 transition-all"
-                              >
-                                <Download className="w-4 h-4 text-gray-400" />
-                              </a>
-                            </div>
-                          </div>
-                        </motion.div>
-                      ))}
-                    </motion.div>
-                  )}
-                </AnimatePresence>
-              </div>
+                      <Eye className="w-5 h-5 text-gray-400 group-hover:text-cyan-400 transition-colors" />
+                    </button>
+                    <a
+                      href={file.file_url}
+                      download
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="p-3 rounded-xl bg-white/5 hover:bg-cyan-500/20 border border-white/10 hover:border-cyan-500/30 transition-all"
+                    >
+                      <Download className="w-5 h-5 text-gray-400 group-hover:text-cyan-400 transition-colors" />
+                    </a>
+                  </div>
+                </div>
+              </motion.div>
             );
           })}
         </div>
@@ -318,32 +211,6 @@ export default function ProjectFiles({ projectId, user }) {
       <AnimatePresence>
         {previewFile && (
           <FilePreview file={previewFile} user={user} onClose={() => setPreviewFile(null)} />
-        )}
-      </AnimatePresence>
-
-      {/* Version History Modal */}
-      <AnimatePresence>
-        {versionHistoryFile && (
-          <FileVersionHistory
-            file={versionHistoryFile}
-            allFiles={allFiles}
-            onPreview={(version) => {
-              setVersionHistoryFile(null);
-              setPreviewFile(version);
-            }}
-            onClose={() => setVersionHistoryFile(null)}
-          />
-        )}
-      </AnimatePresence>
-
-      {/* Version Comparison Modal */}
-      <AnimatePresence>
-        {compareVersions && (
-          <VersionComparison
-            version1={compareVersions.version1}
-            version2={compareVersions.version2}
-            onClose={() => setCompareVersions(null)}
-          />
         )}
       </AnimatePresence>
     </div>
