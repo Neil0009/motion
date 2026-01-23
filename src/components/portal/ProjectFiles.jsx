@@ -2,9 +2,11 @@ import React, { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { useQuery } from '@tanstack/react-query';
 import { base44 } from '@/api/base44Client';
-import { FileText, Download, Image, Video, File, Calendar, User, Folder, Eye, History, ChevronRight } from 'lucide-react';
+import { FileText, Download, Image, Video, File, Calendar, User, Folder, Eye, History, ChevronRight, GitCompare } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import FilePreview from './FilePreview';
+import FileVersionHistory from './FileVersionHistory';
+import VersionComparison from './VersionComparison';
 
 const fileIcons = {
   'image/': Image,
@@ -25,6 +27,8 @@ export default function ProjectFiles({ projectId, user }) {
   const [selectedFolder, setSelectedFolder] = useState(null);
   const [previewFile, setPreviewFile] = useState(null);
   const [showVersions, setShowVersions] = useState({});
+  const [versionHistoryFile, setVersionHistoryFile] = useState(null);
+  const [compareVersions, setCompareVersions] = useState(null);
 
   const { data: allFiles = [], isLoading } = useQuery({
     queryKey: ['project-files', projectId],
@@ -200,13 +204,24 @@ export default function ProjectFiles({ projectId, user }) {
 
                     <div className="flex items-center gap-2">
                       {hasVersions && (
-                        <button
-                          onClick={() => toggleVersions(file.id)}
-                          className="p-3 rounded-xl bg-white/5 hover:bg-violet-500/20 border border-white/10 hover:border-violet-500/30 transition-all"
-                          title="Version history"
-                        >
-                          <History className="w-5 h-5 text-gray-400 group-hover:text-violet-400 transition-colors" />
-                        </button>
+                        <>
+                          <button
+                            onClick={() => setVersionHistoryFile(file)}
+                            className="p-3 rounded-xl bg-white/5 hover:bg-violet-500/20 border border-white/10 hover:border-violet-500/30 transition-all group/history"
+                            title="View full version history"
+                          >
+                            <History className="w-5 h-5 text-gray-400 group-hover/history:text-violet-400 transition-colors" />
+                          </button>
+                          {versions.length >= 2 && (
+                            <button
+                              onClick={() => setCompareVersions({ version1: versions[1], version2: versions[0] })}
+                              className="p-3 rounded-xl bg-white/5 hover:bg-violet-500/20 border border-white/10 hover:border-violet-500/30 transition-all group/compare"
+                              title="Compare latest versions"
+                            >
+                              <GitCompare className="w-5 h-5 text-gray-400 group-hover/compare:text-violet-400 transition-colors" />
+                            </button>
+                          )}
+                        </>
                       )}
                       <button
                         onClick={() => setPreviewFile(file)}
@@ -303,6 +318,32 @@ export default function ProjectFiles({ projectId, user }) {
       <AnimatePresence>
         {previewFile && (
           <FilePreview file={previewFile} user={user} onClose={() => setPreviewFile(null)} />
+        )}
+      </AnimatePresence>
+
+      {/* Version History Modal */}
+      <AnimatePresence>
+        {versionHistoryFile && (
+          <FileVersionHistory
+            file={versionHistoryFile}
+            allFiles={allFiles}
+            onPreview={(version) => {
+              setVersionHistoryFile(null);
+              setPreviewFile(version);
+            }}
+            onClose={() => setVersionHistoryFile(null)}
+          />
+        )}
+      </AnimatePresence>
+
+      {/* Version Comparison Modal */}
+      <AnimatePresence>
+        {compareVersions && (
+          <VersionComparison
+            version1={compareVersions.version1}
+            version2={compareVersions.version2}
+            onClose={() => setCompareVersions(null)}
+          />
         )}
       </AnimatePresence>
     </div>
