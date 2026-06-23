@@ -33,6 +33,8 @@
   },
   "dependencies": {
     "@base44/sdk": "^0.8.32",
-    "@base44/vite-plugin": "^1.0.23"
+    "@base44/vite-plugin": "^1.0.23",
+    "react": "^18.3.1",
+    "react-dom": "^18.3.1"
   }
 }
