@@ -32,7 +32,7 @@
     "vite": "^6.1.0"
   },
   "dependencies": {
-    "@base44/sdk": "^0.8.24",
-    "@base44/vite-plugin": "^1.0.6"
+    "@base44/sdk": "^0.8.32",
+    "@base44/vite-plugin": "^1.0.23"
   }
 }
