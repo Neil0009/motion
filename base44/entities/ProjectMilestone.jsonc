@@ -1,0 +1,52 @@
+{
+  "name": "ProjectMilestone",
+  "type": "object",
+  "properties": {
+    "project_id": {
+      "type": "string",
+      "description": "Related ClientProject ID"
+    },
+    "title": {
+      "type": "string",
+      "description": "Milestone title"
+    },
+    "description": {
+      "type": "string",
+      "description": "Milestone description"
+    },
+    "due_date": {
+      "type": "string",
+      "format": "date",
+      "description": "Milestone due date"
+    },
+    "status": {
+      "type": "string",
+      "enum": [
+        "pending",
+        "in-progress",
+        "awaiting-approval",
+        "approved",
+        "completed"
+      ],
+      "default": "pending",
+      "description": "Milestone status"
+    },
+    "order": {
+      "type": "number",
+      "description": "Display order"
+    },
+    "approved_by": {
+      "type": "string",
+      "description": "Email of approver"
+    },
+    "approved_date": {
+      "type": "string",
+      "format": "date-time",
+      "description": "Approval timestamp"
+    }
+  },
+  "required": [
+    "project_id",
+    "title"
+  ]
+}

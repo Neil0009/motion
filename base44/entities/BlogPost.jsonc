@@ -1,0 +1,80 @@
+{
+  "name": "BlogPost",
+  "type": "object",
+  "properties": {
+    "title": {
+      "type": "string",
+      "description": "Blog post title"
+    },
+    "slug": {
+      "type": "string",
+      "description": "URL slug"
+    },
+    "excerpt": {
+      "type": "string",
+      "description": "Short excerpt"
+    },
+    "content": {
+      "type": "string",
+      "description": "Full blog content (Markdown)"
+    },
+    "featured_image": {
+      "type": "string",
+      "description": "Featured image URL"
+    },
+    "category": {
+      "type": "string",
+      "enum": [
+        "product-animation",
+        "architecture",
+        "industry-insights",
+        "case-studies",
+        "tutorials",
+        "tips-tricks"
+      ],
+      "description": "Blog category"
+    },
+    "tags": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      },
+      "description": "Blog tags"
+    },
+    "author_name": {
+      "type": "string",
+      "description": "Author name"
+    },
+    "author_email": {
+      "type": "string",
+      "description": "Author email"
+    },
+    "status": {
+      "type": "string",
+      "enum": [
+        "draft",
+        "published"
+      ],
+      "default": "draft",
+      "description": "Publication status"
+    },
+    "published_date": {
+      "type": "string",
+      "format": "date-time",
+      "description": "Publication date"
+    },
+    "read_time": {
+      "type": "number",
+      "description": "Estimated read time in minutes"
+    },
+    "views": {
+      "type": "number",
+      "default": 0,
+      "description": "View count"
+    }
+  },
+  "required": [
+    "title",
+    "content"
+  ]
+}

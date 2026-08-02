@@ -1,0 +1,58 @@
+{
+  "name": "ProjectMeeting",
+  "type": "object",
+  "properties": {
+    "project_id": {
+      "type": "string",
+      "description": "Related ClientProject ID"
+    },
+    "title": {
+      "type": "string",
+      "description": "Meeting title"
+    },
+    "description": {
+      "type": "string",
+      "description": "Meeting description"
+    },
+    "meeting_date": {
+      "type": "string",
+      "format": "date-time",
+      "description": "Meeting date and time"
+    },
+    "duration_minutes": {
+      "type": "number",
+      "default": 60,
+      "description": "Meeting duration in minutes"
+    },
+    "location": {
+      "type": "string",
+      "description": "Meeting location or video link"
+    },
+    "attendees": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      },
+      "description": "List of attendee emails"
+    },
+    "status": {
+      "type": "string",
+      "enum": [
+        "scheduled",
+        "completed",
+        "cancelled"
+      ],
+      "default": "scheduled",
+      "description": "Meeting status"
+    },
+    "created_by": {
+      "type": "string",
+      "description": "Creator email"
+    }
+  },
+  "required": [
+    "project_id",
+    "title",
+    "meeting_date"
+  ]
+}

@@ -1,0 +1,56 @@
+{
+  "name": "ProjectTask",
+  "type": "object",
+  "properties": {
+    "project_id": {
+      "type": "string",
+      "description": "Related ClientProject ID"
+    },
+    "title": {
+      "type": "string",
+      "description": "Task title"
+    },
+    "description": {
+      "type": "string",
+      "description": "Task description"
+    },
+    "assigned_to": {
+      "type": "string",
+      "description": "Assignee email"
+    },
+    "assigned_by": {
+      "type": "string",
+      "description": "Assigner email"
+    },
+    "due_date": {
+      "type": "string",
+      "format": "date",
+      "description": "Task due date"
+    },
+    "priority": {
+      "type": "string",
+      "enum": [
+        "low",
+        "medium",
+        "high"
+      ],
+      "default": "medium",
+      "description": "Task priority"
+    },
+    "status": {
+      "type": "string",
+      "enum": [
+        "pending",
+        "in-progress",
+        "completed"
+      ],
+      "default": "pending",
+      "description": "Task status"
+    }
+  },
+  "required": [
+    "project_id",
+    "title",
+    "assigned_to"
+  ]
+}

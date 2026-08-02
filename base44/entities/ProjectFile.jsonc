@@ -1,0 +1,69 @@
+{
+  "name": "ProjectFile",
+  "type": "object",
+  "properties": {
+    "project_id": {
+      "type": "string",
+      "description": "Related ClientProject ID"
+    },
+    "file_name": {
+      "type": "string",
+      "description": "Original file name"
+    },
+    "file_url": {
+      "type": "string",
+      "description": "File URL"
+    },
+    "file_type": {
+      "type": "string",
+      "description": "File MIME type"
+    },
+    "file_size": {
+      "type": "number",
+      "description": "File size in bytes"
+    },
+    "category": {
+      "type": "string",
+      "enum": [
+        "reference",
+        "deliverable",
+        "review",
+        "final",
+        "other"
+      ],
+      "default": "other",
+      "description": "File category"
+    },
+    "folder": {
+      "type": "string",
+      "description": "Folder name for organization (e.g., 'Concept Art', '3D Models')"
+    },
+    "parent_file_id": {
+      "type": "string",
+      "description": "ID of the original file (for versions)"
+    },
+    "version": {
+      "type": "number",
+      "default": 1,
+      "description": "Version number"
+    },
+    "is_latest": {
+      "type": "boolean",
+      "default": true,
+      "description": "Is this the latest version"
+    },
+    "uploaded_by": {
+      "type": "string",
+      "description": "Email of uploader"
+    },
+    "description": {
+      "type": "string",
+      "description": "File description"
+    }
+  },
+  "required": [
+    "project_id",
+    "file_name",
+    "file_url"
+  ]
+}

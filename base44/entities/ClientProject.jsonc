@@ -1,0 +1,67 @@
+{
+  "name": "ClientProject",
+  "type": "object",
+  "properties": {
+    "project_name": {
+      "type": "string",
+      "description": "Project name"
+    },
+    "client_email": {
+      "type": "string",
+      "description": "Client email (linked to User)"
+    },
+    "project_type": {
+      "type": "string",
+      "enum": [
+        "promo-video",
+        "feature-video",
+        "installation-guide",
+        "3d-visualization",
+        "bim-model",
+        "cad-documentation"
+      ],
+      "description": "Type of service"
+    },
+    "status": {
+      "type": "string",
+      "enum": [
+        "pending",
+        "in-progress",
+        "review",
+        "revision",
+        "completed",
+        "on-hold"
+      ],
+      "default": "pending",
+      "description": "Project status"
+    },
+    "progress_percentage": {
+      "type": "number",
+      "default": 0,
+      "description": "Progress percentage (0-100)"
+    },
+    "start_date": {
+      "type": "string",
+      "format": "date",
+      "description": "Project start date"
+    },
+    "estimated_completion": {
+      "type": "string",
+      "format": "date",
+      "description": "Estimated completion date"
+    },
+    "description": {
+      "type": "string",
+      "description": "Project description"
+    },
+    "thumbnail": {
+      "type": "string",
+      "description": "Project thumbnail"
+    }
+  },
+  "required": [
+    "project_name",
+    "client_email",
+    "project_type"
+  ]
+}

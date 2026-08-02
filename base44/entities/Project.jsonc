@@ -1,0 +1,111 @@
+{
+  "name": "Project",
+  "type": "object",
+  "properties": {
+    "title": {
+      "type": "string",
+      "description": "Project name"
+    },
+    "service_type": {
+      "type": "string",
+      "enum": [
+        "product-promo",
+        "product-feature",
+        "assembly-animation",
+        "exploded-view",
+        "industrial-animation",
+        "architectural-viz",
+        "bim-model",
+        "cad-documentation"
+      ],
+      "description": "Service type category"
+    },
+    "category": {
+      "type": "string",
+      "enum": [
+        "residential",
+        "commercial",
+        "interior",
+        "urban",
+        "product",
+        "industrial"
+      ],
+      "description": "Project category"
+    },
+    "location": {
+      "type": "string",
+      "description": "Project location"
+    },
+    "year": {
+      "type": "string",
+      "description": "Year completed"
+    },
+    "area": {
+      "type": "string",
+      "description": "Project area in sq ft/m"
+    },
+    "description": {
+      "type": "string",
+      "description": "Detailed project description"
+    },
+    "challenge": {
+      "type": "string",
+      "description": "Project challenge"
+    },
+    "solution": {
+      "type": "string",
+      "description": "Solution provided"
+    },
+    "thumbnail": {
+      "type": "string",
+      "description": "Main thumbnail image URL"
+    },
+    "images": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      },
+      "description": "Gallery images"
+    },
+    "video_url": {
+      "type": "string",
+      "description": "YouTube/Vimeo embed URL"
+    },
+    "model_url": {
+      "type": "string",
+      "description": "3D model file URL (GLB/GLTF)"
+    },
+    "services": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      },
+      "description": "Services provided for this project"
+    },
+    "client_name": {
+      "type": "string",
+      "description": "Client name"
+    },
+    "client_role": {
+      "type": "string",
+      "description": "Client role/position"
+    },
+    "client_testimonial": {
+      "type": "string",
+      "description": "Client testimonial"
+    },
+    "client_avatar": {
+      "type": "string",
+      "description": "Client avatar URL"
+    },
+    "featured": {
+      "type": "boolean",
+      "default": false,
+      "description": "Featured project"
+    }
+  },
+  "required": [
+    "title",
+    "service_type"
+  ]
+}

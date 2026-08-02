@@ -1,0 +1,100 @@
+{
+  "name": "Service",
+  "type": "object",
+  "properties": {
+    "title": {
+      "type": "string",
+      "description": "Service name"
+    },
+    "slug": {
+      "type": "string",
+      "description": "URL slug"
+    },
+    "subtitle": {
+      "type": "string",
+      "description": "Service subtitle"
+    },
+    "icon": {
+      "type": "string",
+      "description": "Icon name from lucide-react"
+    },
+    "description": {
+      "type": "string",
+      "description": "Short description"
+    },
+    "detailed_description": {
+      "type": "string",
+      "description": "Detailed description"
+    },
+    "hero_image": {
+      "type": "string",
+      "description": "Hero image URL"
+    },
+    "gradient": {
+      "type": "string",
+      "description": "Tailwind gradient classes"
+    },
+    "benefits": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "title": {
+            "type": "string"
+          },
+          "description": {
+            "type": "string"
+          },
+          "icon": {
+            "type": "string"
+          }
+        }
+      },
+      "description": "Service benefits"
+    },
+    "process_steps": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "title": {
+            "type": "string"
+          },
+          "description": {
+            "type": "string"
+          },
+          "duration": {
+            "type": "string"
+          }
+        }
+      },
+      "description": "Process steps"
+    },
+    "deliverables": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      },
+      "description": "What clients receive"
+    },
+    "pricing_note": {
+      "type": "string",
+      "description": "Pricing information"
+    },
+    "typical_timeline": {
+      "type": "string",
+      "description": "Typical project timeline"
+    },
+    "ideal_for": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      },
+      "description": "Ideal client types"
+    }
+  },
+  "required": [
+    "title",
+    "slug"
+  ]
+}

@@ -1,0 +1,46 @@
+{
+  "name": "FileComment",
+  "type": "object",
+  "properties": {
+    "file_id": {
+      "type": "string",
+      "description": "Related ProjectFile ID"
+    },
+    "project_id": {
+      "type": "string",
+      "description": "Related ClientProject ID"
+    },
+    "user_email": {
+      "type": "string",
+      "description": "Commenter email"
+    },
+    "user_name": {
+      "type": "string",
+      "description": "Commenter name"
+    },
+    "comment": {
+      "type": "string",
+      "description": "Comment text"
+    },
+    "is_admin": {
+      "type": "boolean",
+      "default": false,
+      "description": "Is comment from admin"
+    },
+    "status": {
+      "type": "string",
+      "enum": [
+        "open",
+        "resolved"
+      ],
+      "default": "open",
+      "description": "Comment status"
+    }
+  },
+  "required": [
+    "file_id",
+    "project_id",
+    "user_email",
+    "comment"
+  ]
+}
